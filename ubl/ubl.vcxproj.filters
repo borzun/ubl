@@ -48,6 +48,12 @@
     <ClInclude Include="utils\tests_helper.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
+    <ClInclude Include="utils\VariadicHelpers.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="detail\VariadicHelpersImpl.h">
+      <Filter>Header Files\detail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

@@ -127,6 +127,7 @@
   <ItemGroup>
     <ClCompile Include="BitonicSortTests.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="VariadicHelpersTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MatrixSolution.h" />
