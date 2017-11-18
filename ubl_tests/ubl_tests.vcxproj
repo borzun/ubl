@@ -128,6 +128,7 @@
     <ClCompile Include="BitonicSortTests.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="VariadicHelpersTests.cpp" />
+    <ClCompile Include="VariantTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MatrixSolution.h" />

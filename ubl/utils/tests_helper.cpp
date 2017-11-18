@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <numeric>
 
+#include "detail\IRamMonitor.h"
+
 UBL_NAMESPACE_BEGIN
 
 namespace tests_helper
@@ -16,6 +18,7 @@ namespace tests_helper
 
 		return vec;
 	}
+
 	std::vector<int> generateVeryLargeRandomVector()
 	{
 		static const size_t large_size = static_cast<size_t>(std::pow(2, 15));
@@ -24,6 +27,11 @@ namespace tests_helper
 		const size_t max_size = std::min(large_size, temp_vec.max_size() - 1);
 
 		return generateRandomVector(max_size);
+	}
+
+	size_t getCurrentProcessRamMemoryUsage()
+	{
+		return detail::IRamMonitor::getInstance().getUsedMemoryByCurrentProcess();
 	}
 }
 

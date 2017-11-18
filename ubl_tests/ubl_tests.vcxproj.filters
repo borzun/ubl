@@ -21,7 +21,10 @@
     <ClCompile Include="BitonicSortTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VariadicHelpers.cpp">
+    <ClCompile Include="VariadicHelpersTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VariantTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

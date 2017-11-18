@@ -118,15 +118,21 @@
   <ItemGroup>
     <ClInclude Include="BitonicSort.h" />
     <ClInclude Include="detail\BitonicSortImpl.h" />
+    <ClInclude Include="detail\IRamMonitor.h" />
     <ClInclude Include="detail\VariadicHelpersImpl.h" />
+    <ClInclude Include="detail\VariantImpl.h" />
+    <ClInclude Include="detail\WindowsRamMonitor.h" />
     <ClInclude Include="ThreadPool.h" />
     <ClInclude Include="ThreadsafeQueue.h" />
     <ClInclude Include="ubl.h" />
     <ClInclude Include="utils\ElapsedTimer.h" />
     <ClInclude Include="utils\tests_helper.h" />
     <ClInclude Include="utils\VariadicHelpers.h" />
+    <ClInclude Include="Variant.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="detail\IRamMonitor.cpp" />
+    <ClCompile Include="detail\WindowsRamMonitor.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ThreadPool.cpp" />
     <ClCompile Include="utils\ElapsedTimer.cpp" />

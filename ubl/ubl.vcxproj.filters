@@ -54,6 +54,18 @@
     <ClInclude Include="detail\VariadicHelpersImpl.h">
       <Filter>Header Files\detail</Filter>
     </ClInclude>
+    <ClInclude Include="detail\VariantImpl.h">
+      <Filter>Header Files\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="Variant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="detail\IRamMonitor.h">
+      <Filter>Header Files\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="detail\WindowsRamMonitor.h">
+      <Filter>Header Files\detail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -67,6 +79,12 @@
     </ClCompile>
     <ClCompile Include="utils\tests_helper.cpp">
       <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="detail\WindowsRamMonitor.cpp">
+      <Filter>Source Files\detail</Filter>
+    </ClCompile>
+    <ClCompile Include="detail\IRamMonitor.cpp">
+      <Filter>Source Files\detail</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
