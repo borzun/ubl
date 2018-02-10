@@ -14,7 +14,7 @@ class InvalidVariantException
 	: public std::exception
 {
 public:
-	InvalidVariantException(std::string&& errorStr)
+	explicit InvalidVariantException(std::string&& errorStr)
 		: std::exception()
 		, m_errorMsg(std::forward<std::string>(errorStr))
 	{
@@ -54,9 +54,12 @@ public:
 			}
 		}
 		else {
-			auto pImpl = new detail::VariantImpl<Decayed_T, StorageLen, StorageAlign>(m_storage);
-			m_impl.reset(pImpl);
-			new (&m_storage) Decayed_T(std::forward<T>(value));
+			if (is_type_variadic<T, Args...>()) {
+				m_impl.reset(new detail::VariantImpl<Decayed_T, StorageLen, StorageAlign>(m_storage));
+				new (&m_storage) Decayed_T(std::forward<T>(value));
+			} else{
+				throw InvalidVariantException(std::string("Type: " + std::string(typeid(T).name()) + " doesn't belong to variadic types!"));
+			}
 		}
 		
 		return *this;
@@ -94,10 +97,9 @@ private:
 	static constexpr size_t StorageLen = variadic_max_sizeof<Args...>();
 	// TODO: need to provide some another alignment specifier (like max alignment of all parameter pack types)
 	static constexpr size_t StorageAlign = std::alignment_of_v<double>;
+	std::unique_ptr<detail::IVariantImpl<StorageLen, StorageAlign>> m_impl;
 	
 	using StorageType = std::aligned_storage_t<StorageLen, StorageAlign>;
-
-	std::unique_ptr<detail::IVariantImpl<StorageLen, StorageAlign>> m_impl;
 	StorageType m_storage;
 	
 };

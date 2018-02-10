@@ -38,13 +38,13 @@ class VariantImpl
 public:
 	using SuperType = IVariantImpl<StorageLen, StorageAlign>;
 
-	VariantImpl(StorageType& storage)
+	explicit VariantImpl(StorageType& storage)
 		: SuperType(storage)
 	{ }
 
 	~VariantImpl()
 	{
-		if (auto pValue = reinterpret_cast<T*>(&m_storage)) {
+		if (const auto pValue = reinterpret_cast<T*>(&m_storage)) {
 			pValue->~T();
 		}
 	}

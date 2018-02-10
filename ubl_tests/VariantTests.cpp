@@ -4,23 +4,39 @@
 #include "utils\ElapsedTimer.h"
 #include "utils\tests_helper.h"
 
+using namespace ubl::tests_helper;
 
-TEST(TestVariant, TestSetAndGetNonCV_Values)
+TEST(TestVariant, TestSetNonCV_Values)
+{
+	ubl::Variant<int, double, char> variant;
+
+	ASSERT_TRUE(wait_for_exception<ubl::InvalidVariantException>([&variant]()
+	{
+		variant = 42.f;
+	}));
+	ASSERT_TRUE(wait_for_exception<ubl::InvalidVariantException>([&variant]()
+	{
+		variant = std::string("test value");
+	}));
+	ASSERT_TRUE(wait_for_exception<ubl::InvalidVariantException>([&variant]()
+	{
+		variant = std::vector<int>();
+	}));
+}
+
+TEST(TestVariant, TestGetNonCV_Values)
 {
 	ubl::Variant<int, double, char> variant;
 
 	// Test for empty variant:
-	try {
+	ASSERT_TRUE(wait_for_exception<ubl::InvalidVariantException>([&variant]()
+	{
 		int i_value = variant.getValue<int>();
 		double d_value = variant.getValue<double>();
 		char ch_value = variant.getValue<char>();
 
 		FAIL() << "The InvalidVariantException should have been thrown in case when Variant is not valid!";
-	}
-	catch (const ubl::InvalidVariantException& exc)
-	{
-		ASSERT_TRUE(exc.what() != nullptr);
-	}
+	}));
 
 	// Tests for int:
 	variant = 45;
@@ -135,7 +151,7 @@ TEST(TestVariant, TestGetConstVolatileValues)
 	}
 
 	// Test for double:
-	double d_value = -42.0;
+	constexpr double d_value = -42.0;
 	variant = d_value;
 
 	try {
