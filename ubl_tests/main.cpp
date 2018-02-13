@@ -132,6 +132,8 @@ TEST(TestThreadPool, TestSpuriousThreadPoolDestroy)
 int main(int argc, char** argv)
 {
 	::testing::InitGoogleTest(&argc, argv);
+	
+	//::testing::GTEST_FLAG(filter) = "TestVariant.*";
 	auto success = RUN_ALL_TESTS();
 
 	std::cout << "Press any key to continue...";

@@ -16,6 +16,18 @@ TEST(TestVariant, TestSetNonCV_Values)
 	}));
 	ASSERT_TRUE(wait_for_exception<ubl::InvalidVariantException>([&variant]()
 	{
+		variant = (short)42;
+	}));
+	ASSERT_TRUE(wait_for_exception<ubl::InvalidVariantException>([&variant]()
+	{
+		variant = (long)42;
+	}));
+	ASSERT_TRUE(wait_for_exception<ubl::InvalidVariantException>([&variant]()
+	{
+		variant = (unsigned)42;
+	}));
+	ASSERT_TRUE(wait_for_exception<ubl::InvalidVariantException>([&variant]()
+	{
 		variant = std::string("test value");
 	}));
 	ASSERT_TRUE(wait_for_exception<ubl::InvalidVariantException>([&variant]()
