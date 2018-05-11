@@ -119,9 +119,11 @@
     <ClInclude Include="BitonicSort.h" />
     <ClInclude Include="detail\BitonicSortImpl.h" />
     <ClInclude Include="detail\IRamMonitor.h" />
+    <ClInclude Include="detail\ParallelSearchAsync.h" />
     <ClInclude Include="detail\VariadicHelpersImpl.h" />
     <ClInclude Include="detail\VariantImpl.h" />
     <ClInclude Include="detail\WindowsRamMonitor.h" />
+    <ClInclude Include="ParallelSearch.h" />
     <ClInclude Include="ThreadPool.h" />
     <ClInclude Include="ThreadsafeQueue.h" />
     <ClInclude Include="ubl.h" />

@@ -78,6 +78,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)\ubl\;$(GTEST_DIR)\googletest\include;</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PreprocessorDefinitions>_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(GTEST_DIR)\bin\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -103,6 +104,7 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>
       </LanguageStandard>
+      <PreprocessorDefinitions>_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -127,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="BitonicSortTests.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ParallelSearchTests.cpp" />
     <ClCompile Include="VariadicHelpersTests.cpp" />
     <ClCompile Include="VariantTests.cpp" />
   </ItemGroup>

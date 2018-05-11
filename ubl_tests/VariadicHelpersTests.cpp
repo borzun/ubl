@@ -59,3 +59,33 @@ TEST(TestVariadicHelpers, TestIsTypeVariadic)
 	ASSERT_FALSE((ubl::is_type_variadic<char, double, float, int, short, std::string, std::vector<float>>()));
 	ASSERT_FALSE((ubl::is_type_variadic<unsigned, double, float, int, short, std::string, std::vector<float>>()));
 }
+
+TEST(TestVariadicHelpers, TestGetTypeIndex)
+{
+	// test 0 parameters
+	ASSERT_EQ(ubl::get_type_index<>(), ubl::ubl_npos);
+
+	// test 1 parameter
+	/*ASSERT_EQ(ubl::get_type_index<int>(), ubl::ubl_npos);
+	ASSERT_EQ(ubl::get_type_index<std::vector<int>>(), ubl::ubl_npos);*/
+
+	// test 2 parameter
+	ASSERT_EQ((ubl::get_type_index<int, int>()), 0);
+	ASSERT_EQ((ubl::get_type_index<std::string, std::string>()), 0);
+	ASSERT_EQ((ubl::get_type_index<float, int>()), ubl::ubl_npos);
+
+	// test 3 parameter
+	ASSERT_EQ((ubl::get_type_index<int, int, float, std::vector<int>>()), 0);
+	ASSERT_EQ((ubl::get_type_index<float, int, float, std::vector<int>>()), 1);
+	ASSERT_EQ((ubl::get_type_index<std::vector<int>, int, float, std::vector<int>>()), 2);
+	ASSERT_EQ((ubl::get_type_index<double, int, float, std::vector<int>>()), ubl::ubl_npos);
+	ASSERT_EQ((ubl::get_type_index<char, int, float, std::vector<int>>()), ubl::ubl_npos);
+
+	// test 2 parameters
+	// TODO: for some reason, there is a compile error when do not include call of variadic_max_sizeof into brackets...
+	
+
+	// test 3+ parameters
+	
+}
+

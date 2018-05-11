@@ -11,6 +11,7 @@ namespace tests_helper
 {
 	std::vector<int> generateRandomVector(size_t size);
 	std::vector<int> generateVeryLargeRandomVector();
+	int createRandomValue(int START, int END);
 	
 	size_t getCurrentProcessRamMemoryUsage();
 

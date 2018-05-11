@@ -5,7 +5,7 @@
 
 UBL_NAMESPACE_BEGIN
 
-// MAX_SIZEOF function
+// ---- MAX_SIZEOF function ----
 // full specialization
 template <typename T1, typename T2, typename ... Args>
 constexpr size_t variadic_max_sizeof()
@@ -21,7 +21,7 @@ constexpr size_t variadic_max_sizeof()
 	return typename detail::MaxSizeof<T>::value;
 }
 
-// IS_TYPE_VARIADIC
+// ---- IS_TYPE_VARIADIC ----
 template <typename T = void>
 constexpr bool is_type_variadic()
 {
@@ -32,6 +32,20 @@ template <typename OriginType, typename T1, typename ... Args>
 constexpr bool is_type_variadic()
 {
 	return std::is_same_v<std::decay_t<OriginType>, std::decay_t<T1>> || is_type_variadic<OriginType, Args...>();
+}
+
+// ---- GET_TYPE_INDEX ----
+
+template <typename OriginType = void>
+constexpr size_t get_type_index()
+{
+	return ubl_npos;
+}
+
+template <typename OriginType, typename ... Args>
+constexpr size_t get_type_index()
+{
+	return detail::get_type_index_impl<OriginType, Args...>(0);
 }
 
 UBL_NAMESPACE_END

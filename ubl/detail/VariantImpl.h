@@ -36,6 +36,8 @@ class VariantImpl
 	: public IVariantImpl<StorageLen, StorageAlign>
 {
 public:
+	using Type = T;
+public:
 	using SuperType = IVariantImpl<StorageLen, StorageAlign>;
 
 	explicit VariantImpl(StorageType& storage)

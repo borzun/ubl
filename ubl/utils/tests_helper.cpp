@@ -1,5 +1,6 @@
 #include "tests_helper.h"
 
+#include <random>
 #include <algorithm>
 #include <numeric>
 
@@ -27,6 +28,15 @@ namespace tests_helper
 		const size_t max_size = std::min(large_size, temp_vec.max_size() - 1);
 
 		return generateRandomVector(max_size);
+	}
+
+	int createRandomValue(int START, int END)
+	{
+		std::mt19937 rng;
+		rng.seed(std::random_device()());
+		std::uniform_int_distribution<std::mt19937::result_type> distributor(START, END); 
+
+		return distributor(rng);
 	}
 
 	size_t getCurrentProcessRamMemoryUsage()

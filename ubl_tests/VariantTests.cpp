@@ -234,3 +234,31 @@ TEST(TestVariant, TestUserDefinedType)
 	ASSERT_EQ(-1, variant.getValue<int>());
 	ASSERT_TRUE(is_user_struct_deleted);
 }
+
+TEST(TestVariant, TestVariantHoldThreeTypes_getIndexOfInt_returnZero)
+{
+	ubl::Variant<int, float, std::string> variant;
+	variant = 42;
+	ASSERT_EQ(variant.getIndex(), 0);
+}
+
+TEST(TestVariant, TestVariantHoldThreeTypes_getIndexOfFloat_returnOne)
+{
+	ubl::Variant<int, float, std::string> variant;
+	variant = 42.f;
+	ASSERT_EQ(variant.getIndex(), 1);
+}
+
+TEST(TestVariant, TestVariantHoldThreeTypes_getIndexOfString_returnTwo)
+{
+	ubl::Variant<int, float, std::string> variant;
+	variant = "42";
+	ASSERT_EQ(variant.getIndex(), 2);
+}
+
+TEST(TestVariant, TestVariantHoldThreeTypes_getIndexOfChar_returnInvalidIndex)
+{
+	ubl::Variant<int, float, std::string> variant;
+	variant = 'a';
+	ASSERT_EQ(variant.getIndex(), ubl::variant_npos);
+}

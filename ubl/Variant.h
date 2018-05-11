@@ -31,6 +31,9 @@ public:
 
 };
 
+// Invalid index of Variant::getIndex() method
+static constexpr size_t variant_npos = ubl_npos;
+
 template <typename... Args>
 class Variant
 {
@@ -92,6 +95,15 @@ public:
 		return const_cast<Variant<...Args>*>(this)->getValue<T>();
 	}
 
+	// ---- Observers ----
+	size_t getIndex() const
+	{
+		if (!m_impl) {
+			return variant_npos;
+		}
+
+		return 0;
+	}
 
 private:
 	static constexpr size_t StorageLen = variadic_max_sizeof<Args...>();
