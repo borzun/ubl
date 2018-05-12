@@ -96,6 +96,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -120,6 +121,7 @@
     <ClInclude Include="detail\BitonicSortImpl.h" />
     <ClInclude Include="detail\IRamMonitor.h" />
     <ClInclude Include="detail\ParallelSearchAsync.h" />
+    <ClInclude Include="detail\ParallelSearchOpenMP.h" />
     <ClInclude Include="detail\VariadicHelpersImpl.h" />
     <ClInclude Include="detail\VariantImpl.h" />
     <ClInclude Include="detail\WindowsRamMonitor.h" />

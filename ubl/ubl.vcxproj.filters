@@ -72,6 +72,9 @@
     <ClInclude Include="detail\ParallelSearchAsync.h">
       <Filter>Header Files\detail</Filter>
     </ClInclude>
+    <ClInclude Include="detail\ParallelSearchOpenMP.h">
+      <Filter>Header Files\detail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

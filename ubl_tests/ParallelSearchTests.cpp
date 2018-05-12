@@ -8,34 +8,77 @@
 
 #include "gtest\gtest.h"
 
-std::vector<int> initLargeVector()
+static const std::vector<int> s_largeVector = ubl::tests_helper::generateRandomVector(4000000);
+
+TEST(TestParallelSearch, TestParallelSearchAsyncVector)
 {
-	return ubl::tests_helper::generateRandomVector(4000000);
+	const std::vector<int>& vec = ubl::tests_helper::generateRandomVector(5000);
+
+	std::vector<int> values_to_find;
+	for (int i = 0; i < 100; ++i) {
+		int value = ubl::tests_helper::createRandomValue(0, vec.size() * 2);
+		values_to_find.push_back(value);
+	}
+
+	size_t std_found_values_count = 0;
+	{
+		for (auto value : values_to_find) {
+			auto foundIter = std::find(std::begin(vec), std::end(vec), value);
+			if (foundIter != std::end(vec)) {
+				++std_found_values_count;
+			}
+		}
+	}
+
+	size_t ubl_found_values_count = 0;
+	{
+		for (auto value : values_to_find) {
+			if (ubl::parallelSearch(std::begin(vec), std::end(vec), value, ubl::ParallelSearchImplementation::Async)) {
+				++ubl_found_values_count;
+			}
+		}
+	}
+
+	ASSERT_EQ(std_found_values_count, ubl_found_values_count);
 }
 
-TEST(TestParallelSearch, TestParallelSearchSuccess)
+TEST(TestParallelSearch, TestParallelSearchOpenMPVector)
 {
-	std::vector<int> vec = { 1, 5, 9, 2, 4, 7, 8 };
+	const std::vector<int>& vec = ubl::tests_helper::generateRandomVector(5000);
 
-	bool isOk = ubl::parallelSearch(vec.begin(), vec.end(), 5);
-	ASSERT_TRUE(isOk);
+	std::vector<int> values_to_find;
+	for (int i = 0; i < 100; ++i) {
+		int value = ubl::tests_helper::createRandomValue(0, vec.size() * 2);
+		values_to_find.push_back(value);
+	}
+
+	size_t std_found_values_count = 0;
+	{
+		for (auto value : values_to_find) {
+			auto foundIter = std::find(std::begin(vec), std::end(vec), value);
+			if (foundIter != std::end(vec)) {
+				++std_found_values_count;
+			}
+		}
+	}
+
+	size_t ubl_found_values_count = 0;
+	{
+		for (auto value : values_to_find) {
+			if (ubl::parallelSearch(std::begin(vec), std::end(vec), value, ubl::ParallelSearchImplementation::Async)) {
+				++ubl_found_values_count;
+			}
+		}
+	}
+
+	ASSERT_EQ(std_found_values_count, ubl_found_values_count);
 }
 
-TEST(TestParallelSearch, TestParallelSearchFailure)
+TEST(TestParallelSearch, TestParallelSearchAsyncLargeVectorSuccess)
 {
-	std::vector<int> vec = { 1, 5, 9, 2, 4, 7, 8 };
+	const std::vector<int>& vec = s_largeVector;
 
-	bool isOk = ubl::parallelSearch(vec.begin(), vec.end(), 11);
-	ASSERT_FALSE(isOk);
-}
-
-
-TEST(TestParallelSearch, TestParallelSearchLargeVectorSuccess)
-{
-	std::vector<int> vec = initLargeVector();
-	const int VALUE_TO_FIND = 3997775;
-
-	std::vector<int> values_to_find = { VALUE_TO_FIND };
+	std::vector<int> values_to_find;
 	for (int i = 0; i < 100; ++i) {
 		int value = ubl::tests_helper::createRandomValue(0, vec.size());
 		values_to_find.push_back(value);
@@ -64,7 +107,7 @@ TEST(TestParallelSearch, TestParallelSearchLargeVectorSuccess)
 
 		int found_values_count = 0;
 		for (auto value : values_to_find) {
-			if (ubl::parallelSearch(std::begin(vec), std::end(vec), value)) {
+			if (ubl::parallelSearch(std::begin(vec), std::end(vec), value, ubl::ParallelSearchImplementation::Async)) {
 				++found_values_count;
 			}
 		}
@@ -78,9 +121,9 @@ TEST(TestParallelSearch, TestParallelSearchLargeVectorSuccess)
 	//ASSERT_TRUE(ubl_time_ms <= (std_time_ms * 3 / 2));
 }
 
-TEST(TestParallelSearch, TestParallelSearchLargeVectorFailure)
+TEST(TestParallelSearch, TestParallelSearchAsyncLargeVectorFailure)
 {
-	std::vector<int> vec = initLargeVector();
+	const std::vector<int>& vec = s_largeVector;
 
 	std::vector<int> values_to_find;
 	for (int i = 0; i < 100; ++i) {
@@ -111,7 +154,7 @@ TEST(TestParallelSearch, TestParallelSearchLargeVectorFailure)
 
 		int not_found_values_count = 0;
 		for (auto value : values_to_find) {
-			if (!ubl::parallelSearch(std::begin(vec), std::end(vec), value)) {
+			if (!ubl::parallelSearch(std::begin(vec), std::end(vec), value, ubl::ParallelSearchImplementation::Async)) {
 				++not_found_values_count;
 			}
 		}

@@ -1,16 +1,36 @@
 #pragma once
 
+#include <stdexcept>
+
 #include "ubl.h"
 
 #include <detail\ParallelSearchAsync.h>
+#include <detail\ParallelSearchOpenMP.h>
 
 UBL_NAMESPACE_BEGIN
 
+enum class ParallelSearchImplementation
+{
+	Async,
+	OpenMP
+};
+
+// Parallel search with out-of the box implementations
 template <class IterType, class ValueType>
-class ParallelSearch;
+bool parallelSearch(IterType begin, IterType end, const ValueType& value, ParallelSearchImplementation impl = ParallelSearchImplementation::Async)
+{
+	switch (impl) {
+		case ParallelSearchImplementation::Async:
+			return parallelSearch<IterType, ValueType, detail::ParallelSearchAsync<IterType, ValueType>>(begin, end, value);
+		case ParallelSearchImplementation::OpenMP:
+			return parallelSearch<IterType, ValueType, detail::ParallelSearchOpenMP<IterType, ValueType>>(begin, end, value);
+		default:
+			throw std::invalid_argument("Unsupported implementation type!");
+	}
+}
 
-
-template <class IterType, class ValueType, class SearcherImpl = detail::ParallelSearchAsync<IterType, ValueType>>
+// Generic, extendible implementation of ParallelSearch
+template <class IterType, class ValueType, class SearcherImpl>
 bool parallelSearch(IterType begin, IterType end, const ValueType& value)
 {
 	const auto SIZE = end - begin;
@@ -22,7 +42,6 @@ bool parallelSearch(IterType begin, IterType end, const ValueType& value)
 	SearcherImpl searcher(begin, end, value);
 	return searcher();
 }
-
 
 
 UBL_NAMESPACE_END
