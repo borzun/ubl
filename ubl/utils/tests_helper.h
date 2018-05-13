@@ -4,12 +4,14 @@
 
 #include <functional>
 #include <vector>
+#include <list>
 
 UBL_NAMESPACE_BEGIN
 
 namespace tests_helper
 {
 	std::vector<int> generateRandomVector(size_t size);
+	std::list<int> generateRandomList(size_t size);
 	std::vector<int> generateVeryLargeRandomVector();
 	int createRandomValue(int START, int END);
 	

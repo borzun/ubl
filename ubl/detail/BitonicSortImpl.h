@@ -45,7 +45,7 @@ public:
 			return;
 		}
 
-		auto halfStep = size / 2;
+		const auto halfStep = size / 2;
 		auto iterHalf = iterBegin;
 		std::advance(iterHalf, halfStep);
 
@@ -102,7 +102,7 @@ public:
 			return;
 		}
 
-		auto step = size / 2;
+		const auto step = size / 2;
 		
 		bitonicMergeStep(iterBegin, step, direction);
 

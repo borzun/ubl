@@ -29,7 +29,7 @@ public:
 	ParallelSearchAsync(IterType begin, IterType end, const ValueType& value)
 		: m_value(value)
 	{
-		const auto SIZE = end - begin;
+		const auto SIZE = std::distance(begin, end);
 		int threads_count = std::thread::hardware_concurrency();
 		m_threadsCounter = threads_count;
 

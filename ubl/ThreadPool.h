@@ -18,6 +18,9 @@ public:
 	explicit ThreadPool(size_t num_of_threads);
 	~ThreadPool();
 
+	ThreadPool(const ThreadPool& other) = delete;
+	ThreadPool& operator=(const ThreadPool& other) = delete;
+
 	template <class FunctionType>
 	auto run(FunctionType && func) noexcept;
 

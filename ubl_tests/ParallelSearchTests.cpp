@@ -74,6 +74,38 @@ TEST(TestParallelSearch, TestParallelSearchOpenMPVector)
 	ASSERT_EQ(std_found_values_count, ubl_found_values_count);
 }
 
+TEST(TestParallelSearch, TestParallelSearchAsyncList)
+{
+	const std::list<int>& list = ubl::tests_helper::generateRandomList(5000);
+
+	std::vector<int> values_to_find;
+	for (int i = 0; i < 100; ++i) {
+		int value = ubl::tests_helper::createRandomValue(0, list.size() * 2);
+		values_to_find.push_back(value);
+	}
+
+	size_t std_found_values_count = 0;
+	{
+		for (auto value : values_to_find) {
+			auto foundIter = std::find(std::begin(list), std::end(list), value);
+			if (foundIter != std::end(list)) {
+				++std_found_values_count;
+			}
+		}
+	}
+
+	size_t ubl_found_values_count = 0;
+	{
+		for (auto value : values_to_find) {
+			if (ubl::parallelSearch(std::begin(list), std::end(list), value, ubl::ParallelSearchImplementation::Async)) {
+				++ubl_found_values_count;
+			}
+		}
+	}
+
+	ASSERT_EQ(std_found_values_count, ubl_found_values_count);
+}
+
 TEST(TestParallelSearch, TestParallelSearchAsyncLargeVectorSuccess)
 {
 	const std::vector<int>& vec = s_largeVector;

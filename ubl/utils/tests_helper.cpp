@@ -20,6 +20,12 @@ namespace tests_helper
 		return vec;
 	}
 
+	std::list<int> generateRandomList(size_t size)
+	{
+		auto vec = generateRandomVector(size);
+		return std::list<int>(vec.begin(), vec.end());
+	}
+
 	std::vector<int> generateVeryLargeRandomVector()
 	{
 		static const size_t large_size = static_cast<size_t>(std::pow(2, 15));
@@ -34,7 +40,7 @@ namespace tests_helper
 	{
 		std::mt19937 rng;
 		rng.seed(std::random_device()());
-		std::uniform_int_distribution<std::mt19937::result_type> distributor(START, END); 
+		const std::uniform_int_distribution<std::mt19937::result_type> distributor(START, END); 
 
 		return distributor(rng);
 	}

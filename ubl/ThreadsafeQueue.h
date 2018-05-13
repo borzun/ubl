@@ -12,6 +12,9 @@ public:
 	ThreadsafeQueue();
 	~ThreadsafeQueue();
 
+	ThreadsafeQueue(const ThreadsafeQueue& other) = delete;
+	ThreadsafeQueue& operator=(const ThreadsafeQueue& other) = delete;
+
 	bool push(Type&& value);
 	Type pop();
 

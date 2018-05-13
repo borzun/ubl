@@ -11,14 +11,14 @@ inline ElapsedTimer<TimerType>::ElapsedTimer()
 template<class TimerType>
 inline std::chrono::milliseconds ElapsedTimer<TimerType>::elapsedMsecs() const noexcept
 {
-	auto elapsedTime = TimerType::now() - m_startTimePoint;
+	const auto elapsedTime = TimerType::now() - m_startTimePoint;
 	return std::chrono::duration_cast<std::chrono::milliseconds>(elapsedTime);
 }
 
 template<class TimerType>
 inline std::chrono::nanoseconds ElapsedTimer<TimerType>::elapsedNanos() const noexcept
 {
-	auto elapsedTime = TimerType::now() - m_startTimePoint;
+	const auto elapsedTime = TimerType::now() - m_startTimePoint;
 	return std::chrono::duration_cast<std::chrono::nanoseconds>(elapsedTime);
 }
 

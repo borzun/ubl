@@ -33,7 +33,7 @@ bool parallelSearch(IterType begin, IterType end, const ValueType& value, Parall
 template <class IterType, class ValueType, class SearcherImpl>
 bool parallelSearch(IterType begin, IterType end, const ValueType& value)
 {
-	const auto SIZE = end - begin;
+	const auto SIZE = std::distance(begin, end);
 	if (SIZE < 1000) {
 		auto foundIter = std::find(begin, end, value);
 		return foundIter != end;
