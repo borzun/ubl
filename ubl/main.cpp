@@ -153,7 +153,10 @@ int main()
 #include "Variant.h"
 #include "detail\VariantImpl.h"
 #include "utils\VariadicHelpers.h"
+#include "detail\patterns\MasterSlavePattern.h"
 
 template class ubl::detail::VariantImpl<int, 8, 8>;
 
 template class ubl::Variant<int, double, char>;
+
+template class ubl::detail::MasterSlavePattern<std::vector<int>::iterator>;

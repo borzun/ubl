@@ -34,7 +34,7 @@ public:
 		return m_returnValue;
 	}
 
-	bool operator()() const {
+	bool operator()() const noexcept {
 		return isFound();
 	}
 

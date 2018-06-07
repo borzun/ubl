@@ -25,6 +25,9 @@
     <Filter Include="Source Files\utils">
       <UniqueIdentifier>{e03f5336-a6fd-4b58-b5fc-cc141984c2aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\detail\patterns">
+      <UniqueIdentifier>{68341bb0-20fb-4959-bd2b-431037f4a484}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ThreadsafeQueue.h">
@@ -74,6 +77,9 @@
     </ClInclude>
     <ClInclude Include="detail\ParallelSearchOpenMP.h">
       <Filter>Header Files\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="detail\patterns\MasterSlavePattern.h">
+      <Filter>Header Files\detail\patterns</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

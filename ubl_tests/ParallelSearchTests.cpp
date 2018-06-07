@@ -10,9 +10,47 @@
 
 static const std::vector<int> s_largeVector = ubl::tests_helper::generateRandomVector(4000000);
 
+TEST(TestParallelSearch, TestAsyncSearch_SingleElement_Found)
+{
+	const int VALUE = 42;
+	const std::vector<int> vec = { VALUE };
+	auto beginIter = std::begin(vec);
+	auto endIter = std::end(vec);
+
+	using IterType = decltype(beginIter);
+	bool isFound = ubl::detail::ParallelSearchAsync<IterType, int>(beginIter, endIter, VALUE).isFound();
+	
+	ASSERT_TRUE(isFound);
+}
+
+TEST(TestParallelSearch, TestAsyncSearch_SingleElement_NotFound)
+{
+	const int VALUE = 42;
+	const std::vector<int> vec = { VALUE };
+	auto beginIter = std::begin(vec);
+	auto endIter = std::end(vec);
+
+	using IterType = decltype(beginIter);
+	bool isFound = ubl::detail::ParallelSearchAsync<IterType, int>(beginIter, endIter, -VALUE).isFound();
+
+	ASSERT_FALSE(isFound);
+}
+
+TEST(TestParallelSearch, TestAsyncSearch_EmptyVector_NotFound)
+{
+	std::vector<int> emptyVec;
+	auto beginIter = std::begin(emptyVec);
+	auto endIter = std::end(emptyVec);
+
+	using IterType = decltype(beginIter);
+	bool isFound = ubl::detail::ParallelSearchAsync<IterType, int>(beginIter, endIter, 42).isFound();
+
+	ASSERT_FALSE(isFound);
+}
+
 TEST(TestParallelSearch, TestParallelSearchAsyncVector)
 {
-	const std::vector<int>& vec = ubl::tests_helper::generateRandomVector(5000);
+	const std::vector<int> vec = ubl::tests_helper::generateRandomVector(5000);
 
 	std::vector<int> values_to_find;
 	for (int i = 0; i < 100; ++i) {
@@ -39,12 +77,12 @@ TEST(TestParallelSearch, TestParallelSearchAsyncVector)
 		}
 	}
 
-	ASSERT_EQ(std_found_values_count, ubl_found_values_count);
+	ASSERT_EQ(ubl_found_values_count, std_found_values_count);
 }
 
 TEST(TestParallelSearch, TestParallelSearchOpenMPVector)
 {
-	const std::vector<int>& vec = ubl::tests_helper::generateRandomVector(5000);
+	const std::vector<int> vec = ubl::tests_helper::generateRandomVector(5000);
 
 	std::vector<int> values_to_find;
 	for (int i = 0; i < 100; ++i) {
@@ -71,12 +109,12 @@ TEST(TestParallelSearch, TestParallelSearchOpenMPVector)
 		}
 	}
 
-	ASSERT_EQ(std_found_values_count, ubl_found_values_count);
+	ASSERT_EQ(ubl_found_values_count, std_found_values_count);
 }
 
 TEST(TestParallelSearch, TestParallelSearchAsyncList)
 {
-	const std::list<int>& list = ubl::tests_helper::generateRandomList(5000);
+	const std::list<int> list = ubl::tests_helper::generateRandomList(5000);
 
 	std::vector<int> values_to_find;
 	for (int i = 0; i < 100; ++i) {
@@ -103,7 +141,7 @@ TEST(TestParallelSearch, TestParallelSearchAsyncList)
 		}
 	}
 
-	ASSERT_EQ(std_found_values_count, ubl_found_values_count);
+	ASSERT_EQ(ubl_found_values_count, std_found_values_count);
 }
 
 TEST(TestParallelSearch, TestParallelSearchAsyncLargeVectorSuccess)
@@ -128,7 +166,7 @@ TEST(TestParallelSearch, TestParallelSearchAsyncLargeVectorSuccess)
 			}
 		}
 		
-		ASSERT_EQ(found_values_count, values_to_find.size());
+		ASSERT_EQ(values_to_find.size(), found_values_count);
 		
 		std_time_ms = timer.elapsedMsecs().count();
 	}
@@ -144,7 +182,7 @@ TEST(TestParallelSearch, TestParallelSearchAsyncLargeVectorSuccess)
 			}
 		}
 
-		ASSERT_EQ(found_values_count, values_to_find.size());
+		ASSERT_EQ(values_to_find.size(), found_values_count);
 		ubl_time_ms = timer.elapsedMsecs().count();
 	}
 
@@ -175,7 +213,7 @@ TEST(TestParallelSearch, TestParallelSearchAsyncLargeVectorFailure)
 			}
 		}
 
-		ASSERT_EQ(not_found_values_count, values_to_find.size());
+		ASSERT_EQ(values_to_find.size(), not_found_values_count);
 
 		std_time_ms = timer.elapsedMsecs().count();
 	}
@@ -191,7 +229,7 @@ TEST(TestParallelSearch, TestParallelSearchAsyncLargeVectorFailure)
 			}
 		}
 
-		ASSERT_EQ(not_found_values_count, values_to_find.size());
+		ASSERT_EQ(values_to_find.size(), not_found_values_count);
 		ubl_time_ms = timer.elapsedMsecs().count();
 	}
 
