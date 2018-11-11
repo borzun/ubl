@@ -15,7 +15,11 @@ namespace tests_helper
 		std::vector<int> vec(size);
 		
 		std::iota(vec.begin(), vec.end(), 0);
-		std::random_shuffle(vec.begin(), vec.end());
+
+		std::random_device device;
+		std::mt19937 engine{ device() };
+
+		std::shuffle(vec.begin(), vec.end(), engine);
 
 		return vec;
 	}

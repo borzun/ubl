@@ -4,5 +4,4 @@ project(ubl)
 
 add_subdirectory(ubl)
 add_subdirectory(ThreadPoolExe)
-
-# add_subdirectory(ubl_tests)
+add_subdirectory(ubl_tests)
