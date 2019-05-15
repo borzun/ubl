@@ -22,7 +22,7 @@ public:
 		m_size = std::distance(begin, end);
 	}
 
-	__forceinline void bitonicSwap(Iterator iterBegin, size_t step, bool direction) noexcept
+	UBL_FORCEINLINE void bitonicSwap(Iterator iterBegin, size_t step, bool direction) noexcept
 	{
 		auto iterEnd = iterBegin;
 		std::advance(iterEnd, step);

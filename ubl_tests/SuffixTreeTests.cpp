@@ -1,12 +1,12 @@
 #include <vector>
 #include <numeric>
 
-#include "utils\tests_helper.h"
-#include "utils\ElapsedTimer.h"
+#include "utils/tests_helper.h"
+#include "utils/ElapsedTimer.h"
 
 #include "SuffixTree.h"
 
-#include "gtest\gtest.h"
+#include "gtest/gtest.h"
 
 TEST(TestSuffixTree, TempTestGetMismatchIndex)
 {

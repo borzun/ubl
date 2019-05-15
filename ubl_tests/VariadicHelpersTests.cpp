@@ -1,9 +1,9 @@
 #include <string>
 #include <vector>
 
-#include "utils\VariadicHelpers.h"
+#include "utils/VariadicHelpers.h"
 
-#include "gtest\gtest.h"
+#include "gtest/gtest.h"
 
 TEST(TestVariadicHelpers, TestVariadicMaxSizeof)
 {

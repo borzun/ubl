@@ -1,10 +1,11 @@
+#include <cmath>
 #include <vector>
 
 #include "BitonicSort.h"
-#include "utils\ElapsedTimer.h"
-#include "utils\tests_helper.h"
+#include "utils/ElapsedTimer.h"
+#include "utils/tests_helper.h"
 
-#include "gtest\gtest.h"
+#include "gtest/gtest.h"
 
 TEST(TestBitonicSort, TestBitonicMergeStepForward)
 {

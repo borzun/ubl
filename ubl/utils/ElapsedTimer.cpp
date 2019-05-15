@@ -25,6 +25,6 @@ inline std::chrono::nanoseconds ElapsedTimer<TimerType>::elapsedNanos() const no
 // Explicit instantionation:
 template class ElapsedTimer<default_timer_t>;
 template class ElapsedTimer<std::chrono::high_resolution_clock>;
-template class ElapsedTimer<std::chrono::steady_clock>;
+//template class ElapsedTimer<std::chrono::steady_clock>;
 
 UBL_NAMESPACE_END

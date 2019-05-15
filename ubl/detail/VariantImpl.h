@@ -13,7 +13,7 @@ class IVariantImpl
 public:
 	using StorageType = std::aligned_storage_t<StorageLen, StorageAlign>;
 
-	IVariantImpl(StorageType& storage)
+	explicit IVariantImpl(StorageType& storage)
 		: m_storage(storage)
 	{ }
 
@@ -37,18 +37,19 @@ class VariantImpl
 {
 public:
 	using Type = T;
+    using SuperType = IVariantImpl<StorageLen, StorageAlign>;
+    using typename SuperType::StorageType;
+    
 public:
-	using SuperType = IVariantImpl<StorageLen, StorageAlign>;
-
-	explicit VariantImpl(StorageType& storage)
+    explicit VariantImpl(StorageType& storage)
 		: SuperType(storage)
 	{ }
 
 	~VariantImpl()
 	{
-		if (const auto pValue = reinterpret_cast<T*>(&m_storage)) {
-			pValue->~T();
-		}
+        if (const auto pValue = reinterpret_cast<T*>(&this->m_storage)) {
+            pValue->~T();
+        }
 	}
 
 	virtual const std::type_info& getTypeInfo() const

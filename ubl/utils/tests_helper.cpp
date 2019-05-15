@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <numeric>
 
-#include "detail\IRamMonitor.h"
+#include "detail/IRamMonitor.h"
 
 UBL_NAMESPACE_BEGIN
 
@@ -44,8 +44,7 @@ namespace tests_helper
 	{
 		std::mt19937 rng;
 		rng.seed(std::random_device()());
-		const std::uniform_int_distribution<std::mt19937::result_type> distributor(START, END); 
-
+        std::uniform_int_distribution<std::mt19937::result_type> distributor(START, END);
 		return distributor(rng);
 	}
 

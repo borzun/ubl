@@ -86,9 +86,9 @@ private: // Members
 
 
 private:
-	const FinishFuncType ALWAYS_FALSE_FUNC = []() -> bool {
-		return false;
-	};
+    static bool ALWAYS_FALSE_FUNC() {
+        return false;
+    }
 };
 
 DETAIL_NAMESPACE_END

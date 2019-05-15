@@ -1,12 +1,12 @@
 #include <vector>
 #include <numeric>
 
-#include "utils\tests_helper.h"
+#include "utils/tests_helper.h"
 #include "ParallelSearch.h"
-#include "utils\ElapsedTimer.h"
-#include "utils\tests_helper.h"
+#include "utils/ElapsedTimer.h"
+#include "utils/tests_helper.h"
 
-#include "gtest\gtest.h"
+#include "gtest/gtest.h"
 
 static const std::vector<int> s_largeVector = ubl::tests_helper::generateRandomVector(4000000);
 

@@ -3,6 +3,7 @@
 #include <map>
 #include <future>
 #include <functional>
+#include <vector>
 
 #include "ThreadsafeQueue.h"
 

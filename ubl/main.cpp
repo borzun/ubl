@@ -151,9 +151,9 @@ int main()
 
 #include "BitonicSort.h"
 #include "Variant.h"
-#include "detail\VariantImpl.h"
-#include "utils\VariadicHelpers.h"
-#include "detail\patterns\MasterSlavePattern.h"
+#include "detail/VariantImpl.h"
+#include "utils/VariadicHelpers.h"
+#include "detail/patterns/MasterSlavePattern.h"
 
 template class ubl::detail::VariantImpl<int, 8, 8>;
 

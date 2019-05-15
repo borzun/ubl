@@ -3,7 +3,7 @@
 #include <ubl.h>
 
 #include <atomic>
-#include "patterns\MasterSlavePattern.h"
+#include "patterns/MasterSlavePattern.h"
 
 UBL_NAMESPACE_BEGIN
 

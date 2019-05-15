@@ -1,8 +1,8 @@
 #pragma once
 
 #include "ubl.h"
-#include "utils\VariadicHelpers.h"
-#include "detail\VariantImpl.h"
+#include "utils/VariadicHelpers.h"
+#include "detail/VariantImpl.h"
 
 #include <memory>
 #include <type_traits>
@@ -21,7 +21,7 @@ public:
 
 	}
 
-	virtual char const* what() const override
+	virtual char const* what() const noexcept override
 	{
 		return m_errorMsg.c_str();
 	}
@@ -92,7 +92,7 @@ public:
 	template <typename T>
 	const T& getValue() const
 	{
-		return const_cast<Variant<...Args>*>(this)->getValue<T>();
+		return const_cast<Variant<Args...>*>(this)->getValue<T>();
 	}
 
 	// ---- Observers ----

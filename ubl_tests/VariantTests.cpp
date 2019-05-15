@@ -1,8 +1,8 @@
-#include "gtest\gtest.h"
+#include "gtest/gtest.h"
 
 #include "Variant.h"
-#include "utils\ElapsedTimer.h"
-#include "utils\tests_helper.h"
+#include "utils/ElapsedTimer.h"
+#include "utils/tests_helper.h"
 
 using namespace ubl::tests_helper;
 

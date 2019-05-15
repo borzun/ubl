@@ -10,7 +10,7 @@ class IRamMonitor
 {
 public:
 	
-	virtual size_t getUsedMemoryByCurrentProcess() const = 0;
+    virtual size_t getUsedMemoryByCurrentProcess() const = 0;
 
 	static const IRamMonitor& getInstance();
 
